@@ -1,0 +1,115 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">SRI LANKA POLICE</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+        aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav ml-auto nav navbar-right">
+            <li class="nav-item active">
+                <a class="nav-link" (click)="checkForm('criminalForm')">Add New Criminal Cases <span
+                        *ngIf="formType == 'criminalForm'" class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="checkForm('suspectForm')">Add New Suspect<span
+                        *ngIf="formType == 'suspectForm'" class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit" (click)="logOut()">Log Out</button>
+    </div>
+</nav>
+
+<div class="main" id="criminal" *ngIf="formType == 'criminalForm'">
+    <div class="container">
+        <div class="signup-content">
+            <div class="signup-img" style="padding-top: 50px">
+                <img src="../../assets/images/signup-img.jpg" alt="" />
+            </div>
+            <div class="signup-form">
+                <form [formGroup]="criminalForm" class="register-form" id="register-form">
+                    <h2>Criminal Cases Registration Form</h2>
+                    <div class="form-group">
+                        <label for="name">Case Name :</label>
+                        <input type="text" name="case_name" id="case_name" required formControlName="case_name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="id">Case Category :</label>
+                        <select class="form-control" id="case_category" formControlName="case_category" required>
+                            <option value=""></option>
+                            <option value="Murder">Murder</option>
+                            <option value="Robbery">Robbery</option>
+                            <option value="Child_Abuse">Child Abuse</option>
+                            <option value="Rape">Rape</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="profession">Case Details :</label>
+                        <textarea class="form-control" id="case_details" name="case_details"
+                            formControlName="case_details" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="affiliation">Case Place :</label>
+                        <input type="text" name="case_place" id="case_place" formControlName="case_place" />
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status:</label>
+                        <select class="form-control" id="status" formControlName="status" required>
+                            <option value=""></option>
+                            <option value="progress">progress</option>
+                            <option value="Onging">Onging</option>
+                        </select>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary" id="submit" [disabled]="!criminalForm.valid"
+                            (click)="onSubmitCriminalForm()">Submit Form</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main" id="suspect" *ngIf="formType == 'suspectForm'">
+    <div class="container">
+        <div class="signup-content">
+            <div class="signup-img" style="padding-top: 20px">
+                <img src="../../assets/images/signup-img2.jpg" alt="" />
+            </div>
+            <div class="signup-form">
+                <form [formGroup]="suspectForm" class="register-form" id="register-form">
+                    <h2>Suspect Registration Form</h2>
+                    <div class="form-group">
+                        <label for="name">First Name :</label>
+                        <input type="text" name="fist_name" id="fist_name" required formControlName="fist_name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Last Name :</label>
+                        <input type="text" name="last_name" id="last_name" required formControlName="last_name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="name">National ID :</label>
+                        <input type="text" name="nic" id="nic" required formControlName="nic" />
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Address :</label>
+                        <input type="text" name="address" id="address" required formControlName="address" />
+                    </div>
+                    <div class="form-group">
+                        <label for="id">Case ID :</label>
+                        <select class="form-control" id="case_id" formControlName="case_id" required>
+                            <option value=""></option>
+                            <option [value]="case.id" *ngFor="let case of criminalCase">
+                                {{case.id}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary" id="submit" [disabled]="!suspectForm.valid"
+                            (click)="onSubmitSuspectForm()">Submit Form</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

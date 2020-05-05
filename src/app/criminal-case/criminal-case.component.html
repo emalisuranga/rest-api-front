@@ -1,0 +1,57 @@
+<app-admin-dashbord></app-admin-dashbord>
+
+<div class="limiter">
+    <div class="container-table100">
+        <div class="wrap-table100" style="padding-bottom: 413px;">
+            <h3>Criminal Case List</h3>
+            <div class="table100">
+
+                <table>
+                    <thead>
+                        <tr class="table100-head">
+                            <th class="column1">Case Id</th>
+                            <th class="column2">Case Name</th>
+                            <th class="column3">Case Category</th>
+                            <th class="column4">Case Details</th>
+                            <th class="column5">Case Place</th>
+                            <th class="column6"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let case of criminalCase">
+                            <td class="column1">{{case.id}}</td>
+                            <td class="column2">{{case.case_name}}</td>
+                            <td class="column3">{{case.case_category}}</td>
+                            <td class="column4">{{case.case_details}}</td>
+                            <td class="column5">{{case.case_place}}</td>
+                            <td class="column6">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <button *ngIf="!isAddOffcer" class="btn " (click)="addOfficerCheck(case.id)"><i
+                                                class="fa fa-user-plus"></i>ADD
+                                            OFFICER</button>
+
+                                        <select *ngIf="caseID == case.id" class="form-control" id="status"
+                                            [(ngModel)]="officerId" required>
+                                            <option></option>
+                                            <option [ngValue]="officer.id" *ngFor="let officer of officerList">
+                                                {{officer.first_name}} {{officer.last_name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-4">
+                                        <button *ngIf="caseID == case.id" class="btn " (click)="setOfficer(case.id)"><i
+                                                class="fa fa-check-circle"></i></button>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> -->

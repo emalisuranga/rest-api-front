@@ -1,0 +1,134 @@
+<!-- <div class="main"> -->
+<div class="container emp-profile" *ngIf="!isRegister" style="background: aliceblue;">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="../../assets/images/user.png" alt="" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h5>
+                        {{UserData.name}}
+                    </h5>
+                    <h6>
+                        {{UserData.profession}}
+                    </h6>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab" aria-controls="home"
+                                aria-selected="true">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"
+                    (click)="isRegister = !isRegister" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 offset-md-4">
+                <div class="tab-content profile-tab" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>User Id</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{UserData.id}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{UserData.name}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Email</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{UserData.email}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Profession</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{UserData.profession}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Affiliation</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{UserData.affiliation}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Type</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{UserData.type}}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="isRegister">
+    <div class="main">
+        <div class="container">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <img src="../../assets/images/signup-img.jpg" alt="" />
+                </div>
+                <div class="signup-form">
+                    <form [formGroup]="updeteForm" class="register-form" id="register-form">
+                        <h2>student details updete form</h2>
+                        <div class="form-group">
+                            <label for="name">Full Name :</label>
+                            <input type="text" name="name" id="name" required formControlName="name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="id">National ID :</label>
+                            <input type="text" name="id" id="id" autocomplete="false" formControlName="nic" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="profession">Profession :</label>
+                            <input type="text" name="profession" id="profession" formControlName="profession" />
+                        </div>
+                        <div class="form-group">
+                            <label for="affiliation">Affiliation :</label>
+                            <input type="text" name="affiliation" id="affiliation" formControlName="affiliation" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email ID :</label>
+                            <input type="email" name="email" id="email" formControlName="email" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password :</label>
+                            <input type="password" name="password" id="password" formControlName="password" />
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-primary" id="submit" [disabled]="!updeteForm.valid"
+                                (click)="onSubmit()">Updete Form</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

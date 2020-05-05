@@ -1,0 +1,111 @@
+<div class="limiter">
+    <div class="container-table100">
+        <div class="col-12" align="right">
+            <button class="btn " (click)="isApproved = !isApproved"><i class="fa fa-check-circle"
+                    *ngIf="!isApproved"></i>{{ isApproved? ' Register Student':' Approved Student'}} </button>
+        </div>
+
+        <div class="wrap-table100" *ngIf="!isApproved">
+            <h3>Register Student List</h3>
+            <div class="table100">
+
+                <table>
+                    <thead>
+                        <tr class="table100-head">
+                            <th class="column1">Student Id</th>
+                            <th class="column2">Name</th>
+                            <th class="column3">Type</th>
+                            <th class="column4">Email</th>
+                            <th class="column5">Profession</th>
+                            <th class="column6"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let student of registerStudent">
+                            <td class="column1">{{student.id}}</td>
+                            <td class="column2">{{student.name}}</td>
+                            <td class="column3">{{student.type}}</td>
+                            <td class="column4">{{student.email}}</td>
+                            <td class="column5">{{student.profession}}</td>
+                            <td class="column6">
+                                <button class="btn " (click)="setApproed(student.id)"><i
+                                        class="fa fa-check-circle"></i></button>
+                                <button class="btn-danger" (click)="rejectStudent(student.id)"><i
+                                        class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="wrap-table100" *ngIf="isApproved">
+            <h3>Approved Student List</h3>
+            <div class="row" style="margin-bottom: 10px;">
+                <div class="col-md-3 col-sm-12">
+                    <h5>Select Category</h5>
+                    <select class="form-control form-control-lg" [(ngModel)]="categoryId"
+                        (change)="getCategoryId($event)">
+                        <option></option>
+                        <option [value]="categor.id" *ngFor="let categor of category"
+                            [selected]="categor.id == categoryId">{{categor.name}}</option>
+                    </select>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-md-3 col-sm-12">
+                    <h5>Select Qualifications</h5>
+                    <select class="form-control form-control-lg" [(ngModel)]="qualificationsId"
+                        (change)="getQualificationsId($event)">
+                        <option></option>
+                        <option [value]="qualification.id" *ngFor="let qualification of qualifications"
+                            [selected]="qualification.id == qualificationsId">{{qualification.name}}</option>
+                    </select>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-md-3 col-sm-12 row">
+                    <h5 style="margin-bottom: 5px;">Enter Student Id</h5>
+                    <div class="col-md-6 col-sm-12">
+                        <input type="text" class="form-control form-control-lg" placeholder="Student Id" id="stId"
+                            [(ngModel)]="searchId" style="height: 35px;">
+                    </div>
+                    <div class="colcol-md-1 col-sm-12"></div>
+                    <div class="col-md-4 col-sm-12">
+                        <button type="submit" class="btn btn-primary" (click)="searchStudentId()">Search</button>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="table100">
+                <table>
+                    <thead>
+                        <tr class="table100-head">
+                            <th class="column1">Student Id</th>
+                            <th class="column2">Name</th>
+                            <th class="column3">Type</th>
+                            <th class="column4">Email</th>
+                            <th class="column5">Profession</th>
+                            <th class="column6">Category</th>
+                            <th class="column7">Qualifications</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let student of approvedStudent">
+                            <td class="column1">{{student.id}}</td>
+                            <td class="column2">{{student.name}}</td>
+                            <td class="column3">{{student.type}}</td>
+                            <td class="column4">{{student.email}}</td>
+                            <td class="column5">{{student.profession}}</td>
+                            <td class="column6">{{student.categories_name}}</td>
+                            <td class="column7">{{student.qualifications_name}}</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
